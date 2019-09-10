@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Welcome To KendoUI</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<link rel="stylesheet"
+	href="https://kendo.cdn.telerik.com/2019.2.619/styles/kendo.common.min.css" />
+<link rel="stylesheet"
+	href="https://kendo.cdn.telerik.com/2019.2.619/styles/kendo.rtl.min.css" />
+<link rel="stylesheet"
+	href="https://kendo.cdn.telerik.com/2019.2.619/styles/kendo.silver.min.css" />
+<!-- 
+<script type="text/javascript" src="jquery.js"></script>
+ -->
+<link rel="stylesheet" type="text/css" href="basic.css">
+
+
+
+</head>
+<script>
+	function validateform() {
+		var name = document.myform.name.value;
+		var password = document.myform.password.value;
+		var phone_number = document.myform.password.value;
+
+		if (name == null || name == "") {
+			alert("Name cannot be null.");
+			return false;
+		} else if (password.length < 6) {
+			alert("Password must be at least 6 characters long.");
+			return false;
+		} else if (telephone.length < 10)
+			alert("Telephone number must be 10 digits.")
+	}
+
+	$(document).ready(function() {
+		$('#insert').click(function() {
+			$.ajax({
+				type : "POST",
+				url : "LoginServlet",
+				data : $('#form').serialize()
+			//Serialise data into string .Stringify can also be used
+			}).done(function(data) {
+				alert(data);//data object represents the response
+			});
+		});
+	});
+
+	$(document).ready(function() {
+		$('#read').click(function() {
+			$.ajax({
+				type : "GET",
+				url : "LoginServlet",
+				data : $('#form2').serialize(),
+				contentType : "application/json",
+				dataType : 'json'
+			}).done(function(data) {
+				alert(data);
+				window.location.href = url;
+			});
+		});
+	});
+</script>
+
+<Style>
+</Style>
+<body class="ktb-var-normal-gradient">
+
+	<div class="header-main" style="text-align: center;">
+		<header class="k-block" style="text-align: center;">
+			<b>Welcome To KendoValidation. 
+		</header>
+
+		<form id="form" name="myform" method="post"
+			onsubmit="return validateform()" id="ticketsForm" class="k-form">
+			<b>Name: <input type="text" class="k-block" required="true"
+				title="" id="name" name="name"><br /> Password: <input
+				type="password" name="password" pattern="(?=.*\d)(?=.*[a-z]).{6,}"
+				class="k-block" required="true" style="text-align: center;"
+				title="Password must contain alphabets as well as digits and should be more than 5 character long"><br />
+				Phone Number: <input type="tel" style="text-align: center;"
+				name="telephone" pattern="[0-9]{10}" class="k-block" required="true"
+				title="Phone Number must 10 digits."><br /> <input
+				type="submit" id="insert" value="INSERT" class="k-button"><br />
+		</form>
+		<form id="form2" method="get">
+			<input type="submit" id="read" value="RETRIEVE" class="k-button"><br />
+		</form>
+		<form>
+			<input type="submit" value="UPDATE" class="k-button"><br />
+			<input type="reset" value="DELETE" class="k-button">
+		</form>
+	</div>
+</html>

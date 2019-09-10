@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Welcome to Jquery</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+<script>
+	$(document).ready(function() {
+		$('#hide').click(function() {
+			$('p').hide();
+		});
+		$('#show').click(function() {
+			$('p').show();
+			document.write("Hello, You are back!");
+		});
+	});
+
+	$(document).ready(function() {
+
+		$('#down').focus(function() {
+			$('p').show();
+			document.write("Hello, You are back!");
+			alert("Hail Mary");
+		});
+
+	});
+
+	$("button").click(function() {
+		$.post("/LoginServlet", {
+			name : "Donald Duck",
+			city : "Duckburg"
+		}, function(data, status) {
+			alert("Data: " + data + "\nStatus: " + status);
+		});
+	});
+</script>
+
+</head>
+<body>
+
+	<div id="Mydiv">
+		<p>Jquerry example with onClick example</p>
+		<button id="show">Show</button>
+		<button id="hide">Hide</button>
+		<button id="down">Mouse Down</button>
+		<button id="Button">Button</button>
+	</div>
+</body>
+
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>SO question 4112686</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script>
+	$("#my_form").submit(function(event) {
+		event.preventDefault(); //prevent default action 
+		var post_url = $(this).attr("action"); //get form action url
+		var form_data = $(this).serialize(); //Encode form elements for submission
+
+		$.post(post_url, form_data, function(response) {
+			$("/LoginServlet").html(response);
+		});
+	});
+</script>
+</head>
+<body>
+	<form action="LoginServlet" method="post" id="my_form">
+		<label>Name</label> <input type="text" name="name" /> <label>Email</label>
+		<input type="email" name="email" /> <label>Website</label> <input
+			type="url" name="website" /> <input type="submit" name="submit"
+			value="Submit Form" />
+		<div id="server-results">
+			<!-- For server results -->
+		</div>
+	</form>
+</body>
+</html>
