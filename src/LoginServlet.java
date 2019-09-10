@@ -121,7 +121,7 @@ public class LoginServlet extends HttpServlet {
 					// READING DATA FROM THE DATABASE
 					response.setContentType("text/html");
 
-					System.out.println("READING DATA FROM THE DATATABASE");
+					System.out.println("READING DATA FROM THE DATATABASE hiiii");
 					ResultSet rs = stmnt.executeQuery("SELECT * FROM public.\"RegistrationDetails\"");
 					while (rs.next()) {
 						out.println(rs.getString(1));
